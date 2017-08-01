@@ -1,21 +1,44 @@
 {
-  "//1": "Metadata-based configuration of SAML login code",
-  "//2": "https://docs.npmjs.com/files/package.json",
-  "name": "saml2-metadata-config",
-  "version": "0.0.10",
-  "description": "Metadata-based configuration of SAML login code",
-  "main": "./saml2-metadata-config.js",
-  "dependencies": {},
-  "engines": {
-    "node": "6.10.x"
-  },
-  "repository": {
-    "url": "https://github.com/danroot/SAML2-metadata-config"
+  "name": "passport-saml-metadata",
+  "version": "1.0.0",
+  "description": "SAML2 metadata loader for passport-saml-restify",
+  "author": {
+    "name": "Jonathon Hill",
+    "email": "jhill9693@gmail.com"
   },
   "license": "MIT",
   "keywords": [
     "node",
     "passport",
-    "SAML"
-  ]
+    "SAML",
+    "SAML2",
+    "passport-saml-restify",
+    "metadata"
+  ],
+  "repository": {
+    "url": "https://github.com/compwright/passport-saml-metadata"
+  },
+  "main": "./src/",
+  "scripts": {
+    "test": "npm run eslint && npm run mocha",
+    "eslint": "eslint src/. test/. --config .eslintrc.json",
+    "mocha": "mocha test/ --recursive"
+  },
+  "engines": {
+    "node": ">= 6.10",
+    "npm": ">= 3"
+  },
+  "dependencies": {
+    "debug": "^2.6.8",
+    "superagent": "^3.5.2",
+    "xmldom": "^0.1.27",
+    "xpath": "0.0.24"
+  },
+  "devDependencies": {
+    "eslint": "^4.3.0",
+    "mocha": "^3.5.0"
+  },
+  "peerDependencies": {
+    "passport-saml-restify": "^1.0.5"
+  }
 }
