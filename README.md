@@ -16,14 +16,14 @@ npm install passport-saml-metadata
 
 ```javascript
 const os = require('os');
+const fileCache = require('file-system-cache').default;
 const loadMetadata = require('passport-saml-metadata');
-const FileCache = require('file-system-cache');
 const SamlStrategy = require('passport-saml-restify').Strategy;
 
 loadMetadata({
-  url:'https://adfs.company.com/federationMetadata/2007-06/FederationMetadata.xml',
+  url: 'https://adfs.company.com/federationMetadata/2007-06/FederationMetadata.xml',
   timeout: 1500,
-  backupStore: new FileCache({ basePath: os.tmpdir() })
+  backupStore: fileCache({ basePath: os.tmpdir() })
 }).then((config) => {
   // config.entryPoint
   // config.logoutUrl
@@ -37,6 +37,8 @@ loadMetadata({
     function(profile, done) {
       done(null, profile);
     }
-  );
+  ));
 });
 ```
+
+Example app: [compwright/passport-saml-example](https://github.com/compwright/passport-saml-example)
