@@ -1,6 +1,6 @@
 {
   "name": "passport-saml-metadata",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "SAML2 metadata loader for passport-saml-restify",
   "author": {
     "name": "Jonathon Hill",
