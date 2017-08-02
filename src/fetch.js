@@ -31,7 +31,7 @@ module.exports = (options = {}) => {
       return Promise.resolve(backupStore.get(url))
         .catch((err) => {
           debug('Backup store request error', err);
-          Promise.reject(error);
+          return Promise.reject(error);
         });
     });
 };
