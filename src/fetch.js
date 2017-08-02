@@ -14,7 +14,9 @@ module.exports = (options = {}) => {
 
   return request.get(url)
     .timeout(timeout)
+    .buffer(true)
     .then((res) => {
+      debug('Metadata loaded', res.text.length);
       backupStore.set(url, res.text);
       return res.text;
     })
@@ -29,6 +31,15 @@ module.exports = (options = {}) => {
 
       debug('Metadata request failed, attempting backup store');
       return Promise.resolve(backupStore.get(url))
+        .then((data) => {
+          if (!data) {
+            debug('Backup store was empty');
+            return Promise.reject(error);
+          }
+
+          debug('Metadata loaded from backupStore', data.length);
+          return data;
+        })
         .catch((err) => {
           debug('Backup store request error', err);
           return Promise.reject(error);
