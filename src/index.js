@@ -1,12 +1,10 @@
 const fetch = require('./fetch');
-const transform = require('./transform');
+const MetadataReader = require('./reader');
+const { toPassportConfig, claimsToCamelCase } = require('./passport');
 
-const defaults = {
-  timeout: 2000,
-  backupStore: new Map()
-};
-
-module.exports = (config = {}) => {
-  const options = Object.assign({}, defaults, config);
-  return fetch(options).then(transform);
+module.exports = {
+  fetch: (config) => fetch(config).then((xml) => new MetadataReader(xml)),
+  MetadataReader,
+  toPassportConfig,
+  claimsToCamelCase
 };

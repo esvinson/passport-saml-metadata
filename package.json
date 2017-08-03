@@ -1,7 +1,7 @@
 {
   "name": "passport-saml-metadata",
   "version": "1.0.1",
-  "description": "SAML2 metadata loader for passport-saml-restify",
+  "description": "SAML2 metadata loader",
   "author": {
     "name": "Jonathon Hill",
     "email": "jhill9693@gmail.com"
@@ -12,7 +12,8 @@
     "passport",
     "SAML",
     "SAML2",
-    "passport-saml-restify",
+    "passport-saml",
+    "passport-wsfed-saml2",
     "metadata"
   ],
   "repository": {
@@ -29,6 +30,8 @@
     "npm": ">= 3"
   },
   "dependencies": {
+    "camelcase": "^4.1.0",
+    "core-js": "^2.4.1",
     "debug": "^2.6.8",
     "superagent": "^3.5.2",
     "xmldom": "^0.1.27",
@@ -37,8 +40,5 @@
   "devDependencies": {
     "eslint": "^4.3.0",
     "mocha": "^3.5.0"
-  },
-  "peerDependencies": {
-    "passport-saml-restify": "^1.0.5"
   }
 }

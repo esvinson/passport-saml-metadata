@@ -2,8 +2,13 @@ const assert = require('assert');
 const request = require('superagent');
 const debug = require('debug')('passport-saml-metadata');
 
-module.exports = (options = {}) => {
-  const { url, timeout, backupStore } = options;
+const defaults = {
+  timeout: 2000,
+  backupStore: new Map()
+};
+
+module.exports = (config = {}) => {
+  const { url, timeout, backupStore } = Object.assign({}, defaults, config);
 
   assert.ok(url, 'url is required');
   assert.ok(backupStore, 'backupStore is required');
