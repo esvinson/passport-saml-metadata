@@ -15,7 +15,7 @@ module.exports = (config = {}) => {
   assert.equal(typeof backupStore.get, 'function', 'backupStore must have a get(key) function');
   assert.equal(typeof backupStore.set, 'function', 'backupStore must have a set(key, value) function');
 
-  debug('Loading metadata', url);
+  debug('Loading metadata', url, timeout, backupStore);
 
   return request.get(url)
     .timeout(timeout)
@@ -34,7 +34,7 @@ module.exports = (config = {}) => {
         error.status = err.response.status;
       }
 
-      debug('Metadata request failed, attempting backup store');
+      debug('Metadata request failed, attempting backup store', err);
       return Promise.resolve(backupStore.get(url))
         .then((data) => {
           if (!data) {
