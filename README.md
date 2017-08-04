@@ -44,11 +44,11 @@ See [compwright/passport-saml-example](https://github.com/compwright/passport-sa
 
 ## API
 
-### fetch(options = {})
+### fetch(config = {})
 
 When called, it will attempt to load the metadata XML from the supplied URL. If it fails due to a request timeout or other error, it will attempt to load from the `backupStore` cache.
 
-Options:
+Config:
 
 * `url` (required) Metadata XML file URL
 * `timeout` Time to wait before falling back to the `backupStore`, in ms (default = `2000`)
@@ -99,3 +99,15 @@ Parses metadata XML and extracts the following properties:
 * `signingCert`
 * `encryptionCert`
 * `claimSchema` - an object hash of claim identifiers that may be provided in the SAML assertion
+
+### metadata(app)(config = {})
+
+Returns a function which sets up an Express application route to generate the metadata XML file for your application at /FederationMetadata/2007-06/FederationMetadata.xml. ADFS servers may import the resulting file to set up the relying party trust.
+
+Config:
+
+* `issuer` (required) The unique application identifier, used to name the relying party trust; may be a URN or URL
+* `callbackUrl` (required) The absolute URL to redirect back to with the SAML assertion after logging in, usually https://hostname[:port]/login/callback
+* `logoutCallbackUrl` The absolute URL to redirect back to with the SAML assertion after logging out, usually https://hostname[:port]/logout
+
+See [compwright/passport-saml-example](https://github.com/compwright/passport-saml-example) for a usage example.
