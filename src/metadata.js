@@ -1,9 +1,7 @@
 const assert = require('assert');
 const SAML = require('passport-saml').SAML;
 
-function configureMetadataRoute(config = {}) {
-  const app = this;
-
+function configureMetadataRoute(app, config = {}) {
   assert.equal(typeof config, 'object', 'config must be an object');
   assert.ok(config.issuer, 'config.issuer is required');
   assert.ok(config.callbackUrl, 'config.callbackUrl is required');
@@ -19,4 +17,6 @@ function configureMetadataRoute(config = {}) {
   });
 }
 
-module.exports = (app) => configureMetadataRoute.bind(app);
+module.exports = (config) => function() {
+  configureMetadataRoute(this, config);
+};
