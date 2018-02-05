@@ -4,7 +4,7 @@ const { toPassportConfig, claimsToCamelCase } = require('../src/passport');
 const reader = {
   identityProviderUrl: 'a',
   logoutUrl: 'b',
-  signingCert: 'c',
+  signingCerts: ['c'],
   identifierFormat: 'd',
   claimSchema: require('./data/claim-schema.json')
 };

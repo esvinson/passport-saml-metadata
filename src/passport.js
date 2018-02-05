@@ -2,12 +2,12 @@ const entries = require('core-js/library/fn/object/entries');
 const debug = require('debug')('passport-saml-metadata');
 
 function toPassportConfig(reader = {}) {
-  const { identifierFormat, identityProviderUrl, logoutUrl, signingCert } = reader;
+  const { identifierFormat, identityProviderUrl, logoutUrl, signingCerts } = reader;
 
   const config = {
     identityProviderUrl,
     logoutUrl,
-    cert: signingCert,
+    cert: [].concat(signingCerts).pop(), // assumes the last cert is the most recent one
     identifierFormat
   };
 

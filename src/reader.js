@@ -51,10 +51,27 @@ class MetadataReader {
     }
   }
 
-  get encryptionCert() {
+  get encryptionCerts() {
     try {
       return this.query('//md:IDPSSODescriptor/md:KeyDescriptor[@use="encryption"]/sig:KeyInfo/sig:X509Data/sig:X509Certificate')
-        .map((node) => node.firstChild.data)[0];
+        .map((node) => node.firstChild.data);
+    } catch (e) {
+      if (this.options.throwExceptions) throw e;
+    }
+  }
+
+  get encryptionCert() {
+    try {
+      return this.encryptionCerts[0];
+    } catch (e) {
+      if (this.options.throwExceptions) throw e;
+    }
+  }
+
+  get signingCerts() {
+    try {
+      return this.query('//md:IDPSSODescriptor/md:KeyDescriptor[@use="signing"]/sig:KeyInfo/sig:X509Data/sig:X509Certificate')
+        .map((node) => node.firstChild.data);
     } catch (e) {
       if (this.options.throwExceptions) throw e;
     }
@@ -62,13 +79,12 @@ class MetadataReader {
 
   get signingCert() {
     try {
-      return this.query('//md:IDPSSODescriptor/md:KeyDescriptor[@use="signing"]/sig:KeyInfo/sig:X509Data/sig:X509Certificate')
-        .map((node) => node.firstChild.data)[0];
+      return this.signingCerts[0];
     } catch (e) {
       if (this.options.throwExceptions) throw e;
     }
   }
-
+  
   get claimSchema() {
     try {
       return this.query('//md:IDPSSODescriptor/claim:Attribute/@Name')
