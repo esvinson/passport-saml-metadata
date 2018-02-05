@@ -30,7 +30,7 @@ module.exports = (config = {}) => {
 
       // Superagent emits errors with error.response instead of error.message
       if (err.response) {
-        error = new Error(err.response.body.message);
+        error = err.response.error || new Error(err.response.body.message);
         error.status = err.response.status;
       }
 

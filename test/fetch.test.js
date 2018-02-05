@@ -5,7 +5,7 @@ const fetch = require('../src/fetch');
 
 const backupStore = new Map();
 
-const url = 'https://cdn.rawgit.com/compwright/passport-saml-metadata/master/test/metadata.xml';
+const url = 'https://cdn.rawgit.com/compwright/passport-saml-metadata/master/test/data/metadata.xml';
 const metadata = fs.readFileSync(path.join(__dirname, 'data', 'metadata.xml')).toString();
 
 describe('fetch()', () => {
@@ -14,7 +14,7 @@ describe('fetch()', () => {
   });
 
   it('fetches metadata XML from URL', (done) => {
-    fetch({ url, timeout: 1000, backupStore })
+    fetch({ url, timeout: 2000, backupStore })
       .then((xml) => {
         assert.equal(xml, metadata);
         assert.ok(backupStore.has(url));
