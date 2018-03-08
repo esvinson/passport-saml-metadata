@@ -6,6 +6,7 @@ function toPassportConfig(reader = {}) {
 
   const config = {
     identityProviderUrl,
+    entryPoint: identityProviderUrl,
     logoutUrl,
     cert: [].concat(signingCerts).pop(), // assumes the last cert is the most recent one
     identifierFormat
