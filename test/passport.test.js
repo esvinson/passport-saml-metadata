@@ -16,6 +16,7 @@ const claims = {
 describe('passport helpers', () => {
   it('toPassportConfig()', () => {
     assert.deepEqual(toPassportConfig(reader), {
+      entryPoint: 'a',
       identityProviderUrl: 'a',
       logoutUrl: 'b',
       cert: 'c',
