@@ -26,9 +26,8 @@
   },
   "main": "./src/",
   "scripts": {
-    "test": "npm run eslint && npm run mocha",
-    "eslint": "eslint src/. test/. --config .eslintrc.json",
-    "mocha": "mocha test/ --recursive"
+    "test": "mocha test/ --recursive --exit --timeout=15000",
+    "pretest": "eslint src/. test/. --config .eslintrc.json"
   },
   "engines": {
     "node": ">= 6.10",
