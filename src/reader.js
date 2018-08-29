@@ -41,7 +41,11 @@ class MetadataReader {
     try {
       return this.query('//md:IDPSSODescriptor/md:NameIDFormat/text()')[0].nodeValue;
     } catch (e) {
-      if (this.options.throwExceptions) throw e;
+      if (this.options.throwExceptions) {
+        throw e;
+      } else {
+        return undefined;
+      }
     }
   }
 
@@ -68,7 +72,11 @@ class MetadataReader {
       // Return the location
       return find(singleSignOnServiceElement.attributes, { name: 'Location' }).value;
     } catch (e) {
-      if (this.options.throwExceptions) throw e;
+      if (this.options.throwExceptions) {
+        throw e;
+      } else {
+        return undefined;
+      }
     }
   }
 
@@ -95,7 +103,11 @@ class MetadataReader {
       // Return the location
       return find(singleLogoutServiceElement.attributes, { name: 'Location' }).value;
     } catch (e) {
-      if (this.options.throwExceptions) throw e;
+      if (this.options.throwExceptions) {
+        throw e;
+      } else {
+        return undefined;
+      }
     }
   }
 
@@ -104,7 +116,11 @@ class MetadataReader {
       return this.query('//md:IDPSSODescriptor/md:KeyDescriptor[@use="encryption"]/sig:KeyInfo/sig:X509Data/sig:X509Certificate')
         .map((node) => node.firstChild.data);
     } catch (e) {
-      if (this.options.throwExceptions) throw e;
+      if (this.options.throwExceptions) {
+        throw e;
+      } else {
+        return undefined;
+      }
     }
   }
 
@@ -112,7 +128,11 @@ class MetadataReader {
     try {
       return this.encryptionCerts[0];
     } catch (e) {
-      if (this.options.throwExceptions) throw e;
+      if (this.options.throwExceptions) {
+        throw e;
+      } else {
+        return undefined;
+      }
     }
   }
 
@@ -121,7 +141,11 @@ class MetadataReader {
       return this.query('//md:IDPSSODescriptor/md:KeyDescriptor[@use="signing"]/sig:KeyInfo/sig:X509Data/sig:X509Certificate')
         .map((node) => node.firstChild.data);
     } catch (e) {
-      if (this.options.throwExceptions) throw e;
+      if (this.options.throwExceptions) {
+        throw e;
+      } else {
+        return undefined;
+      }
     }
   }
 
@@ -129,7 +153,11 @@ class MetadataReader {
     try {
       return this.signingCerts[0];
     } catch (e) {
-      if (this.options.throwExceptions) throw e;
+      if (this.options.throwExceptions) {
+        throw e;
+      } else {
+        return undefined;
+      }
     }
   }
 
@@ -143,12 +171,16 @@ class MetadataReader {
             const camelized = camelCase(description);
             claims[node.value] = { name, description, camelCase: camelized };
           } catch (e) {
-            if (this.options.throwExceptions) throw e;
+            if (this.options.throwExceptions) {
+              throw e;
+            }
           }
           return claims;
         }, {});
     } catch (e) {
-      if (this.options.throwExceptions) throw e;
+      if (this.options.throwExceptions) {
+        throw e;
+      }
       return {};
     }
   }
