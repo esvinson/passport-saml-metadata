@@ -1,6 +1,6 @@
 {
-  "name": "passport-saml-metadata",
-  "version": "1.5.2",
+  "name": "@elm-street-technology/passport-saml-metadata",
+  "version": "1.5.3",
   "description": "SAML2 metadata loader",
   "author": {
     "name": "Jonathon Hill",
@@ -22,7 +22,7 @@
     "metadata"
   ],
   "repository": {
-    "url": "https://github.com/compwright/passport-saml-metadata"
+    "url": "https://github.com/esvinson/passport-saml-metadata"
   },
   "main": "./src/",
   "scripts": {
